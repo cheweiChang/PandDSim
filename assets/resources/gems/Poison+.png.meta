@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "d703b25e-d840-4313-b940-9057e98ce90e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "Poison+": {
+      "ver": "1.0.3",
+      "uuid": "0d64a128-c8e7-45a4-8156-1f83e50add77",
+      "rawTextureUuid": "d703b25e-d840-4313-b940-9057e98ce90e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 1,
+      "trimY": 0,
+      "width": 28,
+      "height": 28,
+      "rawWidth": 30,
+      "rawHeight": 28,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
