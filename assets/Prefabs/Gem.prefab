@@ -164,7 +164,7 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": "9eMmKL2BBO6bk8GxSD1NDb"
+    "_id": "f3rVAGxvJKxYNGaOO8RfTi"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -188,7 +188,36 @@
     "sprite": {
       "__id__": 3
     },
-    "_id": "8ciTo0HwFLOpOi+nryGYy7"
+    "colorPic": [
+      {
+        "__uuid__": "5c1370e3-875f-4a2c-8b42-a518a16ae052"
+      },
+      {
+        "__uuid__": "6349d214-ee89-4b65-895f-77815efb5198"
+      },
+      {
+        "__uuid__": "e3057288-e4b3-4089-a423-73be45c40c4a"
+      },
+      {
+        "__uuid__": "1721c551-6d6d-4a40-be47-4423d5d1148d"
+      },
+      {
+        "__uuid__": "4cac3b6c-ac4b-43aa-941d-3c0549e39031"
+      },
+      {
+        "__uuid__": "d78de605-ca1c-4983-9d3c-a08f22f0bd2c"
+      },
+      {
+        "__uuid__": "899e8aff-ef8b-47b7-ae6d-779da04ad063"
+      },
+      {
+        "__uuid__": "b04fac89-3c43-4010-8c0d-4c609a714d1d"
+      },
+      {
+        "__uuid__": "0d64a128-c8e7-45a4-8156-1f83e50add77"
+      }
+    ],
+    "_id": "3fg2rMnIxFUYA+2/qjWey8"
   },
   {
     "__type__": "cc.PrefabInfo",
