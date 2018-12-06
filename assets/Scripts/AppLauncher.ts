@@ -16,14 +16,10 @@ export default class AppLauncher extends cc.Component {
     // onLoad () {}
 
     start () {
-        let scale = this.canvas.designResolution.width / this.puzzleNode.node.getContentSize().width
-        this.puzzleNode.node.setScale(scale);
-        this.puzzleNode.node.setPosition(0,(this.puzzleNode.node.getContentSize().height * scale - this.canvas.designResolution.height)/2)
-
         let example:GemData[][]=[];
-        for(let i=0;i<6;i++){
+        for(let i=0;i<this.puzzleNode.height;i++){
             example[i]=[];
-            for(let j=0;j<5;j++){
+            for(let j=0;j<this.puzzleNode.width;j++){
                 example[i][j]=new GemData(Math.floor(Math.random()*6));
             }
         }

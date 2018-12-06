@@ -26,7 +26,7 @@ export class GemData{
             this._gem=gem;
             this._gem.setColor(this._color);
         }else{
-            new Error("Gem has been already set!!")
+            throw new Error("Gem has been already set!!")
         }
     }
 

@@ -19,16 +19,17 @@ export default class MapManager extends cc.Component {
     @property
     readonly height: number = 5;
 
-    private readonly unit = 60;
+    private unit = 60;
     private readonly area = this.width * this.height;
     private bgpools:cc.Node[][] = [];
     private gemPools:GemData[][] = [];
     private posTable:cc.Vec2[][] = [];
+    private handGem:cc.Node = null;
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.node.setContentSize(this.width*this.unit,this.height*this.unit);
+        this.unit = this.node.getContentSize().width / this.width;
         for(let row=0;row<this.height;row++){
             for(let col=0;col<this.width;col++){
                 let node = new cc.Node();
@@ -56,6 +57,7 @@ export default class MapManager extends cc.Component {
         }
         // cc.log(this.bgpools)
         // cc.log(this.posTable)
+        // cc.log(this.gemPools)
     }
 
     start () {
@@ -63,18 +65,44 @@ export default class MapManager extends cc.Component {
     }
 
     init(puzzle:GemData[][]){
-        if (puzzle.length != this.width || puzzle[0].length != this.height){
-            cc.log("error puzzle size")
+        if (puzzle.length != this.height || puzzle[0].length != this.width){
+            throw new Error("error puzzle size")
         }
         for(let row=0;row<puzzle.length;row++){
             for(let col=0;col<puzzle[row].length;col++){
-                puzzle[row][col]=this.gemPools[row][col];
+                this.gemPools[row][col]=puzzle[row][col];
 
                 let data=this.gemPools[row][col];
                 let gem = cc.instantiate(this.gem).getComponent(Gem);
                 data.gem=gem;
+                this.addToMap(row,col);
             }
         }
+    }
+
+    addToMap(row:number,col:number){
+        this.gemPools[row][col].gem.node.setPosition(this.posTable[row][col]);
+        this.gemPools[row][col].gem.setContentSize(new cc.Size(this.unit,this.unit));
+        this.node.addChild(this.gemPools[row][col].gem.node);
+    }
+
+    touchBegin(target:Gem,pos:cc.Vec2){
+        let node = cc.instantiate(target.sprite.node)
+        node.setPosition(this.node.convertToNodeSpaceAR(pos));
+        this.node.addChild(node);
+        if (this.handGem){
+            throw new Error("handing");
+        }
+        this.handGem = node;
+    }
+
+    touchMove(pos:cc.Vec2){
+        this.handGem.setPosition(this.node.convertToNodeSpaceAR(pos));
+    }
+
+    touchEnd(){
+        this.handGem.destroy()
+        this.handGem = null;
     }
 
     // update (dt) {}
