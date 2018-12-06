@@ -20,16 +20,17 @@ export default class MapManager extends cc.Component {
     readonly height: number = 5;
 
     private unit = 60;
-    private readonly area = this.width * this.height;
     private bgpools:cc.Node[][] = [];
     private gemPools:GemData[][] = [];
     private posTable:cc.Vec2[][] = [];
     private handGem:cc.Node = null;
+    private area:cc.Rect = null;
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        this.unit = this.node.getContentSize().width / this.width;
+        this.unit = this.node.width / this.width;
+        this.area = this.node.getBoundingBoxToWorld()
         for(let row=0;row<this.height;row++){
             for(let col=0;col<this.width;col++){
                 let node = new cc.Node();
@@ -87,17 +88,19 @@ export default class MapManager extends cc.Component {
     }
 
     touchBegin(target:Gem,pos:cc.Vec2){
-        let node = cc.instantiate(target.sprite.node)
-        node.setPosition(this.node.convertToNodeSpaceAR(pos));
-        this.node.addChild(node);
-        if (this.handGem){
-            throw new Error("handing");
+        if (!this.handGem){
+            let node = cc.instantiate(target.sprite.node)
+            node.setPosition(this.node.convertToNodeSpaceAR(pos));
+            this.node.addChild(node);
+            this.handGem = node;
         }
-        this.handGem = node;
     }
 
     touchMove(pos:cc.Vec2){
         this.handGem.setPosition(this.node.convertToNodeSpaceAR(pos));
+        if (!this.area.contains(pos)){
+            cc.log("out")
+        }
     }
 
     touchEnd(){
